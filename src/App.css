@@ -8,6 +8,8 @@ body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   background-color: #050E3C;
   color: #fff;
+  overflow: auto;
+  padding-bottom: 30px;
 }
 
 .heading {
@@ -162,6 +164,24 @@ i {
   cursor: pointer;
 }
 
+.scroll-custom {
+  scrollbar-width: thin;
+  scrollbar-color: #555 #1f1f1f;
+}
+
+.scroll-custom::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scroll-custom::-webkit-scrollbar-track {
+  background: #1f1f1f;
+}
+
+.scroll-custom::-webkit-scrollbar-thumb {
+  background-color: #555;
+  border-radius: 8px;
+}
+
 @media screen and (min-width: 100px) and (max-width: 800px) {
   .content {
     flex-direction: column;
@@ -171,6 +191,11 @@ i {
   .expense-table,
   .form-content {
     width: 100%;
-    min-width: 450px;
+    min-width: 400px;
+  }
+
+  .heading {
+    margin-block: 30px;
+    font-size: 1.7rem;
   }
 }
