@@ -1,19 +1,25 @@
 import '../App.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
-import ExpenseData from "../ExpenseData";
+import expenseData, { type ExpenseDataType } from '../constants/expenseData';
 import ExpenseForm from "./ExpenseForm";
 import Expensetable from "./ExpenseTable";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { useLocalStorage } from "../hooks/useLocalStorage";
+
+type ExpenseFormType = {
+    title: string;
+    category: string;
+    amount: string;
+}
 
 export default function Content() {
-    const [expenses, setExpenses] = useLocalStorage("expenses", ExpenseData);
-    const [expense, setExpense] = useLocalStorage("expense", {
+    const [expenses, setExpenses] = useLocalStorage<ExpenseDataType[]>("expenses", expenseData);
+    const [expense, setExpense] = useLocalStorage<ExpenseFormType>("expense", {
         title: "",
         category: "",
         amount: "",
     });
-    const [editingRowId, setEditingRowId] = useLocalStorage("editingRowId", "");
+    const [editingRowId, setEditingRowId] = useLocalStorage<string>("editingRowId", "");
 
     return (
         <main>
@@ -26,7 +32,8 @@ export default function Content() {
                     editingRowId={editingRowId}
                     setEditingRowId={setEditingRowId}
                 />
-                <Expensetable expenses={expenses}
+                <Expensetable
+                    expenses={expenses}
                     setExpenses={setExpenses}
                     setExpense={setExpense}
                     setEditingRowId={setEditingRowId}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import '@fortawesome/fontawesome-free/css/all.min.css';
-import { useFilter } from "../../hooks/useFilter";
+import { useFilter } from "../hooks/useFilter";
 import ContextMenu from "./ContextMenu";
 
 export default function Expensetable({ expenses, setExpenses, setExpense, setEditingRowId }) {

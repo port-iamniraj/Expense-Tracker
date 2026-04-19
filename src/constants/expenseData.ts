@@ -1,4 +1,11 @@
-export default [
+export type ExpenseDataType = {
+    id: number;
+    title: string;
+    category: string;
+    amount: string;
+}
+
+const expenseData: ExpenseDataType[] = [
     // {
     //     id: crypto.randomUUID(),
     //     title: "Milk",
@@ -24,3 +31,5 @@ export default [
     //     amount: 1100
     // },
 ];
+
+export default expenseData;
