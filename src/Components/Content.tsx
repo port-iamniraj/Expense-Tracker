@@ -6,7 +6,7 @@ import ExpenseForm from "./ExpenseForm";
 import Expensetable from "./ExpenseTable";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 
-type ExpenseFormType = {
+export type ExpenseFormType = {
     title: string;
     category: string;
     amount: string;

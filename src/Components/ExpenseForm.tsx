@@ -1,11 +1,33 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Input from "./Input";
 import Select from "./Select";
 
-export default function ExpenseForm({ setExpenses, expense, setExpense, editingRowId, setEditingRowId }) {
-    const [errors, setErrors] = useState({});
+import type { ExpenseDataType } from "../constants/expenseData";
+import type { ExpenseFormType } from "./Content";
 
-    const validationConfig = {
+type ExpenseFormProps = {
+    setExpenses: React.Dispatch<React.SetStateAction<ExpenseDataType[]>>;
+    expense: ExpenseFormType;
+    setExpense: React.Dispatch<React.SetStateAction<ExpenseFormType>>;
+    editingRowId: string;
+    setEditingRowId: React.Dispatch<React.SetStateAction<string>>;
+}
+
+type ErrorsType = Partial<Record<keyof ExpenseFormType, string>>;
+
+type ValidationRule = {
+    required?: boolean;
+    minLength?: number;
+    pattern?: RegExp;
+    message: string;
+};
+
+type ValidationConfigType = Record<keyof ExpenseFormType, ValidationRule[]>;
+
+export default function ExpenseForm({ setExpenses, expense, setExpense, editingRowId, setEditingRowId }: ExpenseFormProps) {
+    const [errors, setErrors] = useState<ErrorsType>({});
+
+    const validationConfig: ValidationConfigType = {
         title: [
             { required: true, message: "Title can not be empty" },
             { minLength: 2, message: "Title should be at least 3 characters long" }
@@ -19,23 +41,25 @@ export default function ExpenseForm({ setExpenses, expense, setExpense, editingR
         ],
     };
 
-    function validate(formData) {
-        const errorsData = {};
+    function validate(formData: ExpenseFormType) {
+        const errorsData: ErrorsType = {};
 
         Object.entries(formData).forEach(([key, value]) => {
-            validationConfig[key].some((rule) => {
+            const field = key as keyof ExpenseFormType
+
+            validationConfig[field].some((rule) => {
                 if (rule.required && !value) {
-                    errorsData[key] = rule.message;
+                    errorsData[field] = rule.message;
                     return true;
                 }
 
                 if (rule.minLength && value.length <= rule.minLength) {
-                    errorsData[key] = rule.message;
+                    errorsData[field] = rule.message;
                     return true;
                 }
 
                 if (rule.pattern && rule.pattern.test(value) !== true) {
-                    errorsData[key] = rule.message;
+                    errorsData[field] = rule.message;
                     return true;
                 }
             });
@@ -45,7 +69,7 @@ export default function ExpenseForm({ setExpenses, expense, setExpense, editingR
         return errorsData;
     }
 
-    function expenseHandler(e) {
+    function expenseHandler(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
 
         const validateResult = validate(expense);
@@ -78,8 +102,8 @@ export default function ExpenseForm({ setExpenses, expense, setExpense, editingR
         });
     }
 
-    function setValue(e) {
-        const { name, value } = e.target;
+    function setValue(e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) {
+        const { name, value } = e.currentTarget;
         setExpense((prevState) => ({ ...prevState, [name]: value }));
         setErrors((prevState) => ({ ...prevState, [name]: "" }));
     }

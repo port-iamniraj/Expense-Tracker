@@ -1,5 +1,5 @@
 export type ExpenseDataType = {
-    id: number;
+    id: string;
     title: string;
     category: string;
     amount: string;
