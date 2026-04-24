@@ -5,6 +5,14 @@ It allows users to manage daily expenses with a clean UI, real-time updates, and
 
 ---
 
+## 📸 Preview
+
+<p align="center">
+  <img src="./public/screenshots/home.webp" width="45%" />
+</p>
+
+---
+
 ## 🚀 Features
 
 * ➕ Add, edit, and delete expenses
@@ -33,14 +41,6 @@ It allows users to manage daily expenses with a clean UI, real-time updates, and
 * Clean separation of form state and stored data
 * Controlled components for form handling
 * Safe handling of nullable and dynamic state
-
----
-
-## 📸 Screenshots
-
-```md id="k2h1e9"
-![Home](./public/screenshots/home.webp)
-```
 
 ---
 
