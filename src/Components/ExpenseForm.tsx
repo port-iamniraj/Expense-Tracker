@@ -126,7 +126,7 @@ export default function ExpenseForm({ setExpenses, expense, setExpense, editingR
                 value={expense.category}
                 onChange={setValue}
                 defaultOption="All"
-                options={["Grocery", "Clothes", "Bills", "Education", "Medicine", "Other"]}
+                options={["Grocery", "Clothes", "Housing", "Bills", "Education", "Medicine", "Other"]}
                 error={errors.category}
             />
             <Input

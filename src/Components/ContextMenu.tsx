@@ -20,7 +20,7 @@ export default function ContextMenu({
     setEditingRowId
 }: ContextMenuProps) {
 
-    if (!contextMenuPosition.left === undefined || !currentExpo) return null;
+    if (contextMenuPosition.left === undefined || !currentExpo) return null;
 
     const { id: rowId, title, category, amount } = currentExpo;
 

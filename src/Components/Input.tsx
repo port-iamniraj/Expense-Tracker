@@ -1,6 +1,14 @@
-import React from "react";
+type InputProps = {
+    type: string;
+    id: string;
+    label: string;
+    name: "title" | "category" | "amount";
+    value: string;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    error?: string | undefined;
+};
 
-export default function Input({ type, id, label, name, value, onChange, error }) {
+export default function Input({ type, id, label, name, value, onChange, error }: InputProps) {
     return (
         <div className="input-container">
             <label htmlFor={id}>{label}</label>
@@ -9,8 +17,9 @@ export default function Input({ type, id, label, name, value, onChange, error })
                 id={id}
                 name={name}
                 value={value}
-                onChange={onChange} />
-            <p className="error">{error}</p>
+                onChange={onChange}
+            />
+            {error && <p className="error">{error}</p>}
         </div>
     );
 }

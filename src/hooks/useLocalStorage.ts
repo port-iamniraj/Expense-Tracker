@@ -11,7 +11,7 @@ export function useLocalStorage<T>(key: string, initialData: T) {
         } else {
             localStorage.setItem(key, JSON.stringify(initialData));
         }
-    }, [key, initialData]);
+    }, [key]);
 
     const updateLocalStorage = (newData: T | ((prev: T) => T)) => {
         if (typeof newData === "function") {

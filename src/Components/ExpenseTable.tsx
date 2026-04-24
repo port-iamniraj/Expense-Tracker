@@ -28,7 +28,7 @@ export default function Expensetable({
     const [contextMenuPosition, setPosition] = useState<Position>({});
     const [currentExpo, setCurrentExpo] = useState<ExpenseDataType | null>(null);
     const [sortCallback, setSortCallback] =
-        useState<(a: ExpenseDataType, b: ExpenseDataType) => number>(() => 0);
+        useState<(a: ExpenseDataType, b: ExpenseDataType) => number>(() => () => 0);
 
     const totalAmount = filteredData.reduce((accumulator, { amount }) => accumulator + (+amount), 0);
 
@@ -70,7 +70,7 @@ export default function Expensetable({
                                 <option value="">All</option>
                                 <option value="Grocery">Grocery</option>
                                 <option value="Clothes">Clothes</option>
-                                <option value="Housing">Clothes</option>
+                                <option value="Housing">Housing</option>
                                 <option value="Bills">Bills</option>
                                 <option value="Education">Education</option>
                                 <option value="Medicine">Medicine</option>

@@ -1,22 +1,53 @@
-export default function Select({ label, id, name, value, onChange, defaultOption, options, error }) {
+type SelectProps = {
+    label: string;
+    id: string;
+    name: "title" | "category" | "amount";
+    value: string;
+    onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    defaultOption?: string;
+    options: string[];
+    error?: string | undefined;
+};
+
+export default function Select({
+    label,
+    id,
+    name,
+    value,
+    onChange,
+    defaultOption,
+    options,
+    error
+}: SelectProps) {
     return (
         <div className="input-container">
             <label htmlFor={id}>{label}</label>
+
             <select
                 id={id}
                 name={name}
                 value={value}
-                onChange={onChange} >
+                onChange={onChange}
+            >
                 {
-                    defaultOption && (<option hidden >{defaultOption}</option>)
+                    defaultOption && (
+                        <option value="" disabled
+                        >
+                            {defaultOption}
+                        </option>
+                    )
                 }
+
                 {
-                    options.map((option, i) => {
-                        return <option key={i} value={option}>{option}</option>;
-                    })
+                    options.map((option) =>
+                        <option key={option} value={option}
+                        >
+                            {option}
+                        </option>
+                    )
                 }
             </select>
-            <p className="error">{error}</p>
+            {error && <p className="error">{error}</p>}
         </div>
     );
 }
